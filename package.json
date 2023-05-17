@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "serve": "live-server public/",
-    "build": "webpack",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "test": "jest"
   },
@@ -34,7 +35,7 @@
     "react-dom": "16.8.4",
     "react-modal": "^3.16.1",
     "react-redux": "5.0.5",
-    "react-router-dom": "^6.11.0",
+    "react-router-dom": "6.11.0",
     "react-test-renderer": "16.0.0",
     "redux": "3.7.2",
     "sass-loader": "7.3.1",
