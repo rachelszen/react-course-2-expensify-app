@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import AppRouter from './routers/AppRouter';
 import { store } from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
+import { login, logout } from './actions/auth';
 import { getVisibleExpenses } from './selectors/expenses';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -34,6 +35,7 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user){
+        store.dispatch(login(user.uid));
         store.dispatch(startSetExpenses()).then(() => {
             renderApp();
             if (window.location.pathname === '/') {
@@ -43,6 +45,7 @@ firebase.auth().onAuthStateChanged((user) => {
         });
     } else {
         renderApp();
+        store.dispatch(logout());
         if (window.location.pathname !== '/') {
             window.history.pushState({}, undefined, '/');
             window.location.reload();
