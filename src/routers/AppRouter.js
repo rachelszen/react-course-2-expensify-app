@@ -8,6 +8,7 @@ import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 export const history = createBrowserHistory();
 
@@ -15,7 +16,15 @@ const AppRouter = () => (
     <HistoryRouter history={history}>
         <div>
         <Routes>
-            <Route path="/" element={<LoginPage />} exact={true}/>
+            <Route
+                path="/"
+                element={
+                    <PublicRoute>
+                        <LoginPage />
+                    </PublicRoute>
+                }
+                exact={true}
+            />
             <Route
                 path="/dashboard"
                 element={
