@@ -6,7 +6,9 @@ const PublicRoute = ({ isAuthenticated, children }) => {
   return isAuthenticated ? (
     <Navigate to="/dashboard" />
     ) : (
+      <div>
         {children}
+    </div>
     );
   };
    
