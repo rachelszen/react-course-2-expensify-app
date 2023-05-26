@@ -19,14 +19,22 @@ const ExpenseListFilters = (props) => {
         <div className="content-container">
             <div className="input-group">
                 <div className="input-group__item">
-                    <input type="text" value={props.filters.text} onChange={(e) => {
-                        props.dispatch(setTextFilter(e.target.value));
-                    }}/>
+                    <input 
+                        type="text" 
+                        className="text-input" 
+                        placeholder="Search expenses"
+                        value={props.filters.text} 
+                        onChange={(e) => {
+                            props.dispatch(setTextFilter(e.target.value));
+                         }}/>
                 </div>
                 <div className="input-group__item">
-                    <select value={props.filters.sortBy} onChange={(e) => {
-                        e.target.value === "date" ? props.dispatch(sortByDate()) : props.dispatch(sortByAmount());
-                    }}>
+                    <select 
+                        className="select" 
+                        value={props.filters.sortBy} 
+                        onChange={(e) => {
+                            e.target.value === "date" ? props.dispatch(sortByDate()) : props.dispatch(sortByAmount());
+                        }}>
                         <option value="date">Date</option>
                         <option value="amount">Amount</option>
                     </select>
