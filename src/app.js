@@ -9,6 +9,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import { Provider } from 'react-redux';
 import { firebase } from './firebase/firebase';
+import { history } from './routers/AppRouter';
 
 store.subscribe(() => {
     const state = store.getState();
@@ -39,16 +40,12 @@ firebase.auth().onAuthStateChanged((user) => {
         store.dispatch(startSetExpenses()).then(() => {
             renderApp();
             if (window.location.pathname === '/') {
-                window.history.pushState({}, undefined, '/dashboard');
-                window.location.reload();
+                history.push('/dashboard')
         }
         });
     } else {
         renderApp();
         store.dispatch(logout());
-        if (window.location.pathname !== '/') {
-            window.history.pushState({}, undefined, '/');
-            window.location.reload();
-        }
+        history.push('/');
     }
  })
