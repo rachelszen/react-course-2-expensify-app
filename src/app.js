@@ -10,6 +10,7 @@ import './styles/styles.scss';
 import { Provider } from 'react-redux';
 import { firebase } from './firebase/firebase';
 import { history } from './routers/AppRouter';
+import { LoadingPage } from './components/LoadingPage';
 
 store.subscribe(() => {
     const state = store.getState();
@@ -31,7 +32,7 @@ const renderApp = () => {
     }
 }
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 
 firebase.auth().onAuthStateChanged((user) => {
